@@ -19,15 +19,24 @@ int main() {
   }
 
   try {
+
+    /* FIXME: Different code */
+    int docCnt = 0;
+    ofstream irinfo("ir.info");
+
     while (getDocNamenDocpos(fin, docname, docpos)) {
       ifstream in(docname);
       if (!in) {
         cerr << docname << "in ir.docnames does not exist. \n";
         continue;
       }
+      docCnt++;
       printAllWordsWithDocpos(in, docpos);
       in.close();
     }
+
+    irinfo << docCnt << " ";
+
   } catch (const char* msg) {
     cout << msg << '\n';
   }
