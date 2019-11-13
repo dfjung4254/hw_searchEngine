@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <string>
 #include <iomanip>
 #include "dictionary.h"
 
@@ -11,6 +12,7 @@ bool getDocNamenDocpos(ifstream& fin, char* docname, int& docpos);
 int main() {
   int docpos;                // 문서명 저장 위치
   char docname[MAXLEN + 1];  // 문서명
+  ofstream irinfo;
 
   ifstream fin("ir.docnames");
   if (!fin) {
@@ -22,7 +24,6 @@ int main() {
 
     /* FIXME: Different code */
     int docCnt = 0;
-    ofstream irinfo("ir.info");
 
     while (getDocNamenDocpos(fin, docname, docpos)) {
       ifstream in(docname);
@@ -35,6 +36,7 @@ int main() {
       in.close();
     }
 
+    irinfo.open("ir.info", ios::out | ios::trunc);
     irinfo << docCnt << " ";
 
   } catch (const char* msg) {

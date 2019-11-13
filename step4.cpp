@@ -13,12 +13,12 @@ int main() {
   ofstream irdictionary;
   ofstream irinfo;
 
-  irwords.open("ir.words", ios::out | ios::app | ios::trunc);
-  irpostings.open("ir.postings",
-                  ios::out | ios::app | ios::trunc | ios::binary);
-  irdictionary.open("ir.dictionary",
-                    ios::out | ios::app | ios::trunc | ios::binary);
-  irinfo.open("ir.info", ios::out | ios::ate | ios::app);
+  irwords.open("ir.words", ios::out | ios::trunc);
+  irwords.close();
+  irpostings.open("ir.postings", ios::out | ios::trunc | ios::binary);
+  irpostings.close();
+  irdictionary.open("ir.dictionary", ios::out | ios::trunc | ios::binary);
+  irdictionary.close();
 
   string w_buff;
   vector<Dict_Term> vDictionary;
@@ -82,7 +82,7 @@ int main() {
 
   /* write ir.info */
   irinfo.open("ir.info", ios::out | ios::app | ios::ate);
-  irinfo << " " << lineCnt << " ";
+  irinfo << lineCnt << " ";
   irinfo << maxIdf;
   irinfo.close();
 
