@@ -28,7 +28,7 @@ int main() {
   string tp;
   irinforead >> tp;
   irinforead.close();
-  int docCntAll = stoi(tp);
+  int docCntAll = atoi(tp.c_str());
   cerr << "docCntAll : " << docCntAll << '\n';
   int lineCnt = 0;
   int inLineCnt = 0;
