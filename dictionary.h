@@ -1,3 +1,12 @@
+/*
+
+  2019 정보검색 과제
+  
+  학번 : B354025
+  이름 : 정근화
+
+*/
+
 #ifndef DICTIONARY_H
 #define DICTIONARY_H
 

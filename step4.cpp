@@ -1,8 +1,18 @@
+/*
+
+  2019 정보검색 과제
+  
+  학번 : B354025
+  이름 : 정근화
+
+*/
+
 #include <cmath>
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
+#include <stdlib.h>
 #include "dictionary.h"
 
 using namespace std;

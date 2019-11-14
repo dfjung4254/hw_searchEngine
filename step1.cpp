@@ -1,3 +1,12 @@
+/*
+
+  2019 정보검색 과제
+  
+  학번 : B354025
+  이름 : 정근화
+
+*/
+
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -13,7 +22,7 @@ int main() {
   int docpos;                // 문서명 저장 위치
   char docname[MAXLEN + 1];  // 문서명
   ofstream irinfo;
-  
+
   ifstream fin("ir.docnames");
   if (!fin) {
     cerr << "what?" << '\n';
