@@ -6,6 +6,7 @@
 
 # Unignore all dirs
 !*/
+!doc*
 
 # Unignore Makefiles
 !Makefile
