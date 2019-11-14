@@ -223,5 +223,6 @@ very 1 1  0 1
 ### STEP 4.
 - step4.cpp
 ```
-
+$ make step4
+$ 
 ```

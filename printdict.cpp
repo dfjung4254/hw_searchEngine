@@ -20,14 +20,18 @@ int main() {
 
   ifstream irword;
   ifstream irpostings;
+  ifstream irdocnames;
+  ifstream irinfo;
   for (int i = 0; i < count; i++) {
     Dict_Term current = vDictionary[i];
 
     /* find word */
-    irword.open("ir.word");
+    irword.open("ir.words");
     irword.seekg(current.wordpos);
     string dic_word;
     irword >> dic_word;
+    // cout << "cur word pos : " << current.wordpos << " / " << dic_word <<
+    // '\n';
     irword.close();
 
     /* find Postings */
@@ -43,15 +47,35 @@ int main() {
     int dic_docCnt = current.numposts;
     double dic_idf = current.idf;
     int dic_allCnt = 0;
-    for(int j = 0; j < current.numposts; j++){
+    for (int j = 0; j < current.numposts; j++) {
       Posting curPosting = vPostings[j];
       dic_allCnt += curPosting.freq;
     }
 
-    cout << dic_word << " appeared " << dic_allCnt << " time(s) in " << dic_docCnt << " document(s) [ idf = " << dic_idf << " ]" << '\n';
-    for(int j = 0; j < current.numposts; j++){
-      cout << "  " << 
-    }
+    /* print word informations */
+    cout << dic_word << " appeared " << dic_allCnt << " time(s) in "
+         << dic_docCnt << " document(s) [ idf = " << dic_idf << " ]" << '\n';
 
+    irdocnames.open("ir.docnames");
+    for (int j = 0; j < current.numposts; j++) {
+      string docName;
+      irdocnames.seekg(vPostings[j].docpos);
+      irdocnames >> docName;
+      cout << "   " << docName << " " << vPostings[j].freq;
+    }
+    cout << '\n';
+    irdocnames.close();
   }
+  /* print collection summary */
+  irinfo.open("ir.info");
+  string docs;
+  string words;
+  string maxIdf;
+  irinfo >> docs >> words >> maxIdf;
+
+  cout << '\n';
+  cout << "<Collection Summary>" << '\n';
+  cout << "#Docs = " << docs << "  ";
+  cout << "#Words = " << words << "  ";
+  cout << "#Max.IDF = " << maxIdf << '\n';
 }

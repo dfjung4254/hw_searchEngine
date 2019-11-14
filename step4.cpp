@@ -12,6 +12,7 @@ int main() {
   ofstream irpostings;
   ofstream irdictionary;
   ofstream irinfo;
+  ifstream irinforead;
 
   irwords.open("ir.words", ios::out | ios::trunc);
   irwords.close();
@@ -23,8 +24,15 @@ int main() {
   string w_buff;
   vector<Dict_Term> vDictionary;
 
+  irinforead.open("ir.info");
+  string tp;
+  irinforead >> tp;
+  irinforead.close();
+  int docCntAll = stoi(tp);
+  cerr << "docCntAll : " << docCntAll << '\n';
   int lineCnt = 0;
   int inLineCnt = 0;
+  double maxIdf = -1;
 
   int docCnt = 0;
   int freq = 0;
@@ -52,7 +60,10 @@ int main() {
     irpostings.open("ir.postings", ios::out | ios::app | ios::ate | ios::binary);
     cur_DictTerm.poststart = irpostings.tellp();
     cur_DictTerm.numposts = docCnt;
-    cur_DictTerm.idf = (double)docCnt;
+    cur_DictTerm.idf = log2((double)docCntAll / (double)docCnt);
+    if(maxIdf < cur_DictTerm.idf){
+      maxIdf = cur_DictTerm.idf;
+    }
 
     vector<Posting> postings;
 
@@ -69,15 +80,6 @@ int main() {
     irpostings.close();
 
     vDictionary.push_back(cur_DictTerm);
-  }
-
-  /* set idf and get maxIdf */
-  double maxIdf = -1;
-  for (int i = 0; i < lineCnt; i++) {
-    vDictionary[i].idf = log10(lineCnt / vDictionary[i].idf);
-    if (maxIdf < vDictionary[i].idf) {
-      maxIdf = vDictionary[i].idf;
-    }
   }
 
   /* write ir.info */

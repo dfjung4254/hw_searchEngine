@@ -25,8 +25,8 @@ void capital2Lower(char* word) {
   /* TODO: word 내의 대문자를 모두 소문자로 바꿈 */
   string str_word(word);
   int size = str_word.size();
-  for(int i = 0; i < size; i++){
-    if(str_word[i] >= 'A' && str_word[i] <= 'Z'){
+  for (int i = 0; i < size; i++) {
+    if (str_word[i] >= 'A' && str_word[i] <= 'Z') {
       str_word[i] += 32;
     }
   }
@@ -58,7 +58,12 @@ bool nextWord(istream& in, char* word) {
 }
 
 bool isStopWord(char* word) {
-  /* TODO: 필요시 구현 할 것 */
+  /* TODO: 필요시 구현 할 것 - 불용어 */
+  if (strcmp(word, "is") == 0 || strcmp(word, "the") == 0 ||
+      strcmp(word, "very") == 0) {
+    return true;
+  }
+
   return false;
 }
 
@@ -80,9 +85,11 @@ int numDocs() {
   return numdocs;
 }
 
-int numWords() { /* TODO: NumDocs 와 유사 */ }
+int numWords() { /* TODO: NumDocs 와 유사 */
+}
 
-double maxIDF() { /* TODO: NumDocs 와 유사 */ }
+double maxIDF() { /* TODO: NumDocs 와 유사 */
+}
 
 bool binarySearchDictionary(ifstream& din, char* word, Dict_Term& tm) {
   /* TODO: 사전인 ir.dictionary 의 이진탐색 */

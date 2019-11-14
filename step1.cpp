@@ -1,7 +1,7 @@
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <string>
-#include <iomanip>
 #include "dictionary.h"
 
 using namespace std;
@@ -13,7 +13,7 @@ int main() {
   int docpos;                // 문서명 저장 위치
   char docname[MAXLEN + 1];  // 문서명
   ofstream irinfo;
-
+  
   ifstream fin("ir.docnames");
   if (!fin) {
     cerr << "what?" << '\n';
@@ -21,7 +21,6 @@ int main() {
   }
 
   try {
-
     /* FIXME: Different code */
     int docCnt = 0;
 
